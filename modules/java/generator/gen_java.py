@@ -983,19 +983,19 @@ JNIEXPORT $rtype JNICALL Java_org_opencv_${module}_${clazz}_$fname
 #        {1}(int id) {{ this.id = id; }}
 #        {1}({1} _this) {{ this.id = _this.id; }}
 #        public int getValue() {{ return id; }}
-#    }}\n\n""".format((",\n"+" "*8).join(["%s(%s)" % (c.name, const_value(c.value)) for c in consts]), typeName)
+#    }}\n\n""".format((",\n"+" "*8).join(["%s(%s)" % (c.name, c.value) for c in consts]), typeName)
 #                    )
 ################################################################
                     ci.j_code.write("""
     // C++: enum {1}
     public static final int
-            {0};\n\n""".format((",\n"+" "*12).join(["%s = %s" % (c.name, const_value(c.value)) for c in consts]), typeName)
+            {0};\n\n""".format((",\n"+" "*12).join(["%s = %s" % (c.name, c.value) for c in consts]), typeName)
                     )
                 else:
                     ci.j_code.write("""
     // C++: enum <unnamed>
     public static final int
-            {0};\n\n""".format((",\n"+" "*12).join(["%s = %s" % (c.name, const_value(c.value)) for c in consts]))
+            {0};\n\n""".format((",\n"+" "*12).join(["%s = %s" % (c.name, c.value) for c in consts]))
                     )
         # methods
         for fi in ci.getAllMethods():

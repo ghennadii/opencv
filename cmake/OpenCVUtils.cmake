@@ -1203,7 +1203,7 @@ function(ocv_install_3rdparty_licenses library)
     get_filename_component(name "${filename}" NAME)
     install(
       FILES "${filename}"
-      DESTINATION "${OPENCV_OTHER_INSTALL_PATH}/licenses"
+      DESTINATION "${OPENCV_LICENSES_INSTALL_PATH}"
       COMPONENT licenses
       RENAME "${library}-${name}"
       OPTIONAL)
@@ -1283,14 +1283,6 @@ macro(ocv_parse_header2 LIBNAME HDR_PATH VARNAME)
     else()
       set(${LIBNAME}_VERSION_STRING "${${LIBNAME}_VERSION_STRING}" ${ARGN})
     endif()
-  endif()
-endmacro()
-
-# read single version info from the pkg file
-macro(ocv_parse_pkg LIBNAME PKG_PATH SCOPE)
-  if(EXISTS "${PKG_PATH}/${LIBNAME}.pc")
-    file(STRINGS "${PKG_PATH}/${LIBNAME}.pc" line_to_parse REGEX "^Version:[ \t]+[0-9.]*.*$" LIMIT_COUNT 1)
-    STRING(REGEX REPLACE ".*Version: ([^ ]+).*" "\\1" ALIASOF_${LIBNAME}_VERSION "${line_to_parse}" )
   endif()
 endmacro()
 
